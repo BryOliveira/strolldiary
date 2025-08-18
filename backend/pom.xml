@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.strolldiary</groupId>
-	<artifactId>strolldiary-backend</artifactId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>strolldiary-backend</name>
 	<description>Demo project for Spring Boot</description>
