@@ -28,8 +28,8 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/strolldiarydb
       - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
-      - SPRING_SECURITY_USERNAME=${SPRING_SEC_USERNAME}
-      - SPRING_SECURITY_PASSWORD=${SPRING_SEC_PASSWORD}
+      - SPRING_SECURITY_USERNAME=${SPRING_SECURITY_USERNAME}
+      - SPRING_SECURITY_PASSWORD=${SPRING_SECURITY_PASSWORD}
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_JPA_SHOW_SQL=true
     depends_on:
@@ -48,6 +48,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./db/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      # - ./db/dummydata.sql:/docker-entrypoint-initdb.d/dummydata.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME} -d strolldiarydb"]
       interval: 5s
