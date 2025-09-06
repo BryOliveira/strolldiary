@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MockAuthController {
 
-  @PostMapping("/login")
+  @PostMapping("/api/login")
   public ResponseEntity<?> login() {
     return ResponseEntity.ok().build();
   }
 
-  @PostMapping("/register")
+  @PostMapping("/api/register")
   public ResponseEntity<?> register() {
     return ResponseEntity.ok().build();
   }
 
-  @GetMapping("/protected")
+  @GetMapping("/api/protected")
   public ResponseEntity<?> protectedEndpoint() {
     return ResponseEntity.ok().build();
   }

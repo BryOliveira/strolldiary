@@ -1,4 +1,4 @@
-package com.strolldiary.strolldiary_backend.config.security.interfaces;
+package com.strolldiary.strolldiary_backend.common.sec;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 

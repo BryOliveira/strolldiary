@@ -3,23 +3,24 @@ package com.strolldiary.strolldiary_backend.config.security;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.logging.Logger;
 
 import javax.crypto.SecretKey;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.strolldiary.strolldiary_backend.config.security.interfaces.TokenProvider;
+import com.strolldiary.strolldiary_backend.common.sec.TokenProvider;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 // Will generate, parse, and validate JWTs
 @Component
-public class JwtUtils implements TokenProvider {
+public class JwtUtils implements TokenProvider{
 
-  private static final Logger LOGGER = Logger.getLogger(JwtUtils.class.getName());
+  private static final Logger LOGGER = LoggerFactory.getLogger(JwtUtils.class);
   private final String jwtSecret;
 
   public JwtUtils(@Value("${jwt.secret}") String jwtSecret) {
@@ -47,11 +48,11 @@ public class JwtUtils implements TokenProvider {
                  .getPayload()
                  .getSubject();
     } catch (Exception e) {
-      LOGGER.warning("Failed to extract user ID from JWT: " + e.getMessage());
+      LOGGER.warn("Failed to extract user ID from JWT: {}", e.getMessage());
       return null;
     }
   }
-  
+
   @Override
   public ZonedDateTime getExpirationDateFromToken(String token) {
     try {
@@ -62,7 +63,7 @@ public class JwtUtils implements TokenProvider {
       .getPayload()
       .getExpiration().toInstant(), ZoneId.systemDefault());
     } catch (Exception e) {
-      LOGGER.warning("Failed to extract expiration date from JWT: " + e.getMessage());
+      LOGGER.warn("Failed to extract expiration date from JWT: {}", e.getMessage());
       return null;
     }
   }
@@ -76,7 +77,7 @@ public class JwtUtils implements TokenProvider {
           .parseSignedClaims(token);
       return true;
     } catch (Exception e) {
-      LOGGER.warning("JWT validation error: " + e.getMessage());
+      LOGGER.warn("JWT validation error: {}", e.getMessage());
       return false;
     }
   }
@@ -92,7 +93,7 @@ public class JwtUtils implements TokenProvider {
           .getExpiration();
       return expiration.before(new Date());
     } catch (Exception e) {
-      LOGGER.warning("Failed to check if JWT is expired: " + e.getMessage());
+      LOGGER.warn("Failed to check if JWT is expired: {}", e.getMessage());
       return true;
     }
   }

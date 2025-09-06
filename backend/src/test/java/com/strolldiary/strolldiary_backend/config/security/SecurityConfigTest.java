@@ -38,20 +38,20 @@ class SecurityConfigTest {
 
   @Test
   void loginEndpointIsPublic() throws Exception {
-    mockMvc.perform(post("/login"))
+    mockMvc.perform(post("/api/login"))
            .andExpect(status().isOk());
   }
 
   @Test 
   void registerEndpointIsPublic() throws Exception {
-    mockMvc.perform(post("/register"))
+    mockMvc.perform(post("/api/register"))
            .andExpect(status().isOk());
            
   }
 
   @Test
   void protectedEndpointRequiresAuth() throws Exception {
-    mockMvc.perform(get("/protected"))
+    mockMvc.perform(get("/api/protected"))
            .andExpect(status().isForbidden());
   }
 }

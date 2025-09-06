@@ -1,1 +1,1 @@
-[]
+[{"name":"com.strolldiary.strolldiary_backend.modules.users.controller.UsersController","comment":"Notes for tomorrow to make this work: Replace return types with ResponseEntity<UsersDto> Implement request body parsing for POST and PUT methods Implement proper error handling and response codes Add authentication and authorization checks using body not headers or params Implement input validation and sanitization"}]

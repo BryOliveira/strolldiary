@@ -13,4 +13,6 @@ RUN ./mvnw dependency:go-offline
 
 EXPOSE 8080
 
+ENV JWT_SECRET=$JWT_SECRET
+
 CMD ["./mvnw", "spring-boot:run"]

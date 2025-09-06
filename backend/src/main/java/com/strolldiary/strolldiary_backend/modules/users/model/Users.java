@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,7 +34,17 @@ public class Users {
   @Column(name = "updated_at")
   private ZonedDateTime updatedAt;
 
-  // Getters and Setters
+  @PrePersist
+  protected void onCreate() {
+    this.createdAt = ZonedDateTime.now();
+    this.updatedAt = ZonedDateTime.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    this.updatedAt = ZonedDateTime.now();
+  }
+
   public void setId(int id) {
     this.id = id;
   }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.strolldiary.strolldiary_backend.modules.users.model.Users;
 
 @Repository
-public interface UserRepo extends JpaRepository<Users, Integer>{
+public interface UsersRepo extends JpaRepository<Users, Integer> {
   Users findByUsername(String username);
+  Users findByEmail(String email);
 }
